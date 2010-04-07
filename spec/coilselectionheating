@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby -wKU
+# coilselectionheating
+data = gets.split
+if data[2] == 'F'
+  puts '0 "X" 32.0 0.0 212'
+  exit 0
+else
+  puts '255 "Incorrect value for Celcuiys" 0 0 0'
+  exit 1
+end

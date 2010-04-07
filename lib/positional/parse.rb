@@ -1,3 +1,5 @@
+require "syntax"
+
 module Positional
   class Parse
     attr :format, :object
@@ -17,19 +19,25 @@ module Positional
         string
       end
     end
-    def string_start?(string)
-      string[0] == '"'
+    def whitespace? string
+      if string =~ /^\s+$+/ or string =~ /^$/; true; else; false; end
     end
-    def string_end? string
-      string[-1] == '"'
+    def quote? string
+      if string =~ /"|'/; true; else; false; end
     end
-    def collect_string arry
-      arry[0] = arry[0][1..-1]
-      arry[-1] = arry[-1][0..-2]
-      arry.join ' '
+    def significant? string
+      unless quote?(string) or whitespace?(string)
+        true
+      else
+        false
+      end
     end
     def parse input
-      arry = input.split(/ ("[^"]*)*/)
+      arry = []
+      tokener = Syntax.load 'ruby'
+      tokener.tokenize(input) do |token|
+        arry << token.to_s if significant?(token.to_s)
+      end
       @format.each_with_index do |f, i|
         msg = (f.to_s + '=').to_sym
         @object.send msg, convert(arry[i]) 

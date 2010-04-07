@@ -38,14 +38,13 @@ describe "Format" do
     
   end
   before(:each) do
-    puts Dir.pwd
     fmt = [:elevation, :fluid, :concentration, :tube_side_fz_temp,
       :ent_air_drybulb, :ent_air_wetbulb, :ent_liquid_temp,
       :air_flow_rate, :air_flow_flag, :face_area, :face_velocity, :coil_height, 
       :coil_width, :fin_type, :total_heat_transfer, :leave_air_drybulb, :leave_air_wetbulb,
       :leave_air_dewpoint, :liquid_flow_rate, :leave_liquid_temp, :liquid_temp_rise,
       :max_allow_liquid_head_loss, :max_allow_air_pressure_loss, :max_fins, :connextion]
-    object = CoilSelectionInput.new
+    object = CoilSelectionCoolingInput.new
     @formatter = Positional::Format.new fmt, object
     
   end
