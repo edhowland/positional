@@ -17,7 +17,7 @@ describe "Format" do
       @ent_air_wetbulb=78
       @ent_liquid_temp=45
       @air_flow_rate=10000
-      @air_flow_flag=1
+      @air_flow_flag=1      # scfm=1, acfm=0
       @face_area=0
       @face_velocity=500 
       @coil_height=48

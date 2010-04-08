@@ -3,8 +3,7 @@ require "syntax"
 module Positional
   class Parse
     attr :format, :object
-    def initialize fmt, object=nil
-      @format = fmt
+    def initialize object
       @object = object
     end
     def convert string
@@ -36,12 +35,12 @@ module Positional
       arry = []
       tokener = Syntax.load 'ruby'
       tokener.tokenize(input) do |token|
-        arry << token.to_s if significant?(token.to_s)
+        arry << convert(token.to_s) if significant?(token.to_s)
       end
-      @format.each_with_index do |f, i|
-        msg = (f.to_s + '=').to_sym
-        @object.send msg, convert(arry[i]) 
+      object.inject do
+        arry.shift
       end
+
       @object
     end
   end

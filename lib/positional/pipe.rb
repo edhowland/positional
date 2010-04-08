@@ -10,17 +10,18 @@ module Positional
       @program = program
     end
     def connect
-      vals = ''
-      formatter = Positional::Format.new(@input_map, @input)
+      @vals = ''
+      @formatter = Positional::Format.new(@input_map, @input)
       
       IO.popen(@program, 'w+') do |p|
-        p.puts formatter.to_s
-        vals = p.gets
+        p.puts @formatter.to_s
+        @vals = p.gets
       end
       
       parser = Positional::Parse.new(@output_map, @output)
-      @output = parser.parse(vals)
-      $? == 0
+      @output = parser.parse(@vals)
+      @result = $?
+      @result == 0
     end
   end
 end

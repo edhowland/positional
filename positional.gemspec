@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{positional}
-  s.version = "0.1.2"
+  s.version = "0.1.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ed Howland"]
@@ -28,9 +28,14 @@ Gem::Specification.new do |s|
      "lib/positional/format.rb",
      "lib/positional/output.rb",
      "lib/positional/parse.rb",
+     "lib/positional/pipe.rb",
+     "out",
+     "positional.gemspec",
      "spec/coilselectioncooling",
+     "spec/coilselectionheating",
      "spec/format_spec.rb",
      "spec/parse_spec.rb",
+     "spec/pipe_spec.rb",
      "spec/positional_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb"

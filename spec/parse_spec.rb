@@ -6,8 +6,24 @@ describe "Parse" do
       attr_accessor :criteria_errors, :ari_errors,
       :face_area, :error_msg
     end
-    fmt = [:criteria_errors, :ari_errors, :face_area, :error_msg]
-    @parser = Positional::Parse.new(fmt, CoilSelectionCoolingOutput.new)
+    class Facade
+      attr_accessor :object
+      def initialize(wrapped, fmt)
+        @object = wrapped
+        @fmt = fmt
+      end
+      def inject(&block)
+        @fmt.each do |f|
+          message = (f.to_s + '=').to_sym
+          @object.send message, yield
+        end
+      end
+    end
+    
+    @fmt = [:criteria_errors, :ari_errors, :face_area, :error_msg]
+    @facade = Facade.new(CoilSelectionCoolingOutput.new, @fmt)
+    @parser = Positional::Parse.new @facade
+
   end
   
   it "should convert '0' to 0" do
@@ -31,7 +47,7 @@ describe "Parse" do
   end
   
   it "should parse input into an object" do
-    obj = @parser.parse('0 99 19.01 no')
+    obj = @parser.parse('0 99 19.01 no').object
     obj.criteria_errors.should == 0
     obj.ari_errors.should == 99
     obj.face_area.should == 19.01
@@ -39,7 +55,7 @@ describe "Parse" do
   end
   
   it "should parse quoted string input" do
-    obj = @parser.parse('0 99 19.01 "no"')
+    obj = @parser.parse('0 99 19.01 "no"').object
     obj.criteria_errors.should == 0
     obj.ari_errors.should == 99
     obj.face_area.should == 19.01
@@ -73,11 +89,10 @@ describe "Parse" do
   end
 
   it "should parse multi-word quoted string input" do
-    obj = @parser.parse('0 99    19.01 "any thing"')
+    obj = @parser.parse('0 99    19.01 "any thing"').object
     obj.criteria_errors.should == 0
     obj.ari_errors.should == 99
     obj.face_area.should == 19.01
     obj.error_msg.should == "any thing"
   end
-  
 end
