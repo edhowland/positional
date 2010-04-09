@@ -17,6 +17,15 @@ describe "Pipe" do
     program = File.join('spec', 'coilselectionheating')
     @pipe = Positional::Pipe.new @input, input_map, @output, output_map, program 
   end
+ 
+  it "should save the input value" do
+    @input.arg1 = 1
+    @input.arg2 = 0.3
+    @input.parm1 = 'F'
+    @input.parm2 = 0
+    @pipe.connect
+    @pipe.input_value.should == '1 0.3 "F" 0'
+  end
   
   it "should map and connect up input and output and be true" do
     @input.arg1 = 1
@@ -41,5 +50,14 @@ describe "Pipe" do
     @output.calc1.should == 0
     @output.calc2.should == 0
     @output.temp1.should == 0
+  end
+  
+  it "should save output value" do
+    @input.arg1 = 1
+    @input.arg2 = 0.3
+    @input.parm1 = 'F'
+    @input.parm2 = 32
+    @pipe.connect
+    @pipe.output_value.should == '0 "X" 32.0 0.0 212'
   end
 end
