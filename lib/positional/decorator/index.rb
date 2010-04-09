@@ -6,6 +6,9 @@ module Positional
           self[i] = yield
         end
       end
+      def remove fmt, &block
+        self.each {|e| yield e}
+      end
     end
   end
 end

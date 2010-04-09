@@ -7,6 +7,11 @@ module Positional
           self.send message, yield
         end
       end
+      def remove(fmt, &block)
+        fmt.each do |message|
+          yield self.send message
+        end
+      end
     end
   end
 end

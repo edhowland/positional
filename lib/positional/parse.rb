@@ -1,11 +1,7 @@
 require "syntax"
 
 module Positional
-  class Parse
-    attr :format, :object
-    def initialize object
-      @object = object
-    end
+  class Parse < ParserBase
     def convert string
       case string
       when /^\d+$/
@@ -37,10 +33,9 @@ module Positional
       tokener.tokenize(input) do |token|
         arry << convert(token.to_s) if significant?(token.to_s)
       end
-      object.inject fmt do
+      super(fmt) do
         arry.shift
       end
-      @object
     end
   end
 end

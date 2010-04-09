@@ -52,7 +52,7 @@ class SequenceQuality
   def mask(len)
     str=''
     @bases.each_with_index do |b,i|
-      if cutoff(@phreds[i]) <= 0.01
+      if @phreds[i] >= len
         str << b
       else
         str << 'X'
