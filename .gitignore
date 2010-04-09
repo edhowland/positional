@@ -21,4 +21,4 @@ pkg
 ## PROJECT::SPECIFIC
 
 # yard
-.yardoc/*
+.yardoc
