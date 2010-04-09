@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{positional}
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ed Howland"]
-  s.date = %q{2010-04-08}
+  s.date = %q{2010-04-09}
   s.description = %q{The positional fields gem}
   s.email = %q{ed.howland@gmail.com}
   s.extra_rdoc_files = [
@@ -97,9 +97,12 @@ Gem::Specification.new do |s|
      "lib/positional/decorator/index.rb",
      "lib/positional/decorator/message.rb",
      "lib/positional/format.rb",
+     "lib/positional/format_base.rb",
+     "lib/positional/masked_format.rb",
      "lib/positional/masked_parse.rb",
      "lib/positional/output.rb",
      "lib/positional/parse.rb",
+     "lib/positional/parser_base.rb",
      "lib/positional/pipe.rb",
      "out",
      "positional.gemspec",

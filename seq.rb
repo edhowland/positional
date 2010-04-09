@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby -wKU
+# seq.rb tests sequence and quality parser
 require "rubygems"
 require "positional"
 
@@ -13,20 +15,6 @@ class UnityArray < Array
   end
 end
 
-
-bases='GCTACTGCAAGTTCTAGACT'
-qualities='1 8 15 22 60 55 57 56 58 55 60 58 57 59 55 50 44 18 5 6'
-
-bs=UnityArray.new 20
-sq=UnityArray.new 20
-
-pb = Positional::MaskedParse.new bs.extend Positional::Decorator::Index
-pq = Positional::Parse.new sq.extend Positional::Decorator::Index
-
-
-bs = pb.parse bases
-sq = pq.parse qualities
-
 class SequenceQuality
   class SQ
     attr :base, :phred
@@ -35,7 +23,8 @@ class SequenceQuality
       @phred=p
     end
   end
-  
+
+  attr :bases, :phreds
   def initialize(bs, sq)
     @bases = bs
     @phreds = sq
@@ -62,6 +51,22 @@ class SequenceQuality
   end
 end
 
+
+
+bases='GCTACTGCAAGTTCTAGACT'
+qualities='1 8 15 22 60 55 57 56 58 55 60 58 57 59 55 50 44 18 5 6'
+
+bs=UnityArray.new 20
+sq=UnityArray.new 20
+
+pb = Positional::MaskedParse.new bs.extend Positional::Decorator::Index
+pq = Positional::Parse.new sq.extend Positional::Decorator::Index
+
+
+bs = pb.parse bases
+sq = pq.parse qualities
+
+
 foo = SequenceQuality.new bs, sq
 
 puts foo[4].base
@@ -69,4 +74,10 @@ puts foo[4].phred
 puts foo.mask(20)
 puts 'XXXACTGCAAGTTCTAGXXX'
 
+puts "Recovery ---"
 
+bf = Positional::MaskedFormat.new foo.bases
+qf = Positional::Format.new foo.phreds
+
+puts bf.format
+puts qf.format
