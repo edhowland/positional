@@ -1,5 +1,6 @@
 module Positional
   class Format < FormatBase
+    alias :format :to_s
     def convert object
       if object.kind_of? String
         '"' + object + '"'
