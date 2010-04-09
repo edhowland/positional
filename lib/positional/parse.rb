@@ -31,16 +31,15 @@ module Positional
         false
       end
     end
-    def parse input
+    def parse input, fmt=nil
       arry = []
       tokener = Syntax.load 'ruby'
       tokener.tokenize(input) do |token|
         arry << convert(token.to_s) if significant?(token.to_s)
       end
-      object.inject do
+      object.inject fmt do
         arry.shift
       end
-
       @object
     end
   end

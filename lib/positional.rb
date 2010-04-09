@@ -1,4 +1,6 @@
 require "positional/output"
 require "positional/format"
 require "positional/parse"
+require "positional/masked_parse"
 require "positional/pipe"
+require "positional/decorator"

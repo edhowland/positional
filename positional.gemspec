@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{positional}
-  s.version = "0.1.4"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ed Howland"]
-  s.date = %q{2010-04-07}
+  s.date = %q{2010-04-08}
   s.description = %q{The positional fields gem}
   s.email = %q{ed.howland@gmail.com}
   s.extra_rdoc_files = [
@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
      "lib/positional/pipe.rb",
      "out",
      "positional.gemspec",
+     "seq.rb",
      "spec/coilselectioncooling",
      "spec/coilselectionheating",
      "spec/format_spec.rb",
@@ -50,7 +51,8 @@ Gem::Specification.new do |s|
      "spec/parse_spec.rb",
      "spec/pipe_spec.rb",
      "spec/positional_spec.rb",
-     "spec/spec_helper.rb"
+     "spec/spec_helper.rb",
+     "spec/unity_array_spec.rb"
   ]
 
   if s.respond_to? :specification_version then

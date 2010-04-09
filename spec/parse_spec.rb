@@ -1,3 +1,4 @@
+require "pp"
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe "Parse" do
@@ -6,24 +7,11 @@ describe "Parse" do
       attr_accessor :criteria_errors, :ari_errors,
       :face_area, :error_msg
     end
-    class Facade
-      attr_accessor :object
-      def initialize(wrapped, fmt)
-        @object = wrapped
-        @fmt = fmt
-      end
-      def inject(&block)
-        @fmt.each do |f|
-          message = (f.to_s + '=').to_sym
-          @object.send message, yield
-        end
-      end
-    end
     
     @fmt = [:criteria_errors, :ari_errors, :face_area, :error_msg]
-    @facade = Facade.new(CoilSelectionCoolingOutput.new, @fmt)
-    @parser = Positional::Parse.new @facade
-
+    @object = CoilSelectionCoolingOutput.new
+    @object.extend Positional::Decorator::Message
+    @parser = Positional::Parse.new @object
   end
   
   it "should convert '0' to 0" do
@@ -47,7 +35,7 @@ describe "Parse" do
   end
   
   it "should parse input into an object" do
-    obj = @parser.parse('0 99 19.01 no').object
+    obj = @parser.parse('0 99 19.01 no', @fmt)
     obj.criteria_errors.should == 0
     obj.ari_errors.should == 99
     obj.face_area.should == 19.01
@@ -55,7 +43,7 @@ describe "Parse" do
   end
   
   it "should parse quoted string input" do
-    obj = @parser.parse('0 99 19.01 "no"').object
+    obj = @parser.parse('0 99 19.01 "no"', @fmt)
     obj.criteria_errors.should == 0
     obj.ari_errors.should == 99
     obj.face_area.should == 19.01
@@ -89,10 +77,48 @@ describe "Parse" do
   end
 
   it "should parse multi-word quoted string input" do
-    obj = @parser.parse('0 99    19.01 "any thing"').object
+    obj = @parser.parse('0 99    19.01 "any thing"', @fmt)
     obj.criteria_errors.should == 0
     obj.ari_errors.should == 99
     obj.face_area.should == 19.01
     obj.error_msg.should == "any thing"
+  end
+
+  class UnityArray < Array
+    alias :old_ndx :[]
+    def [](index)
+      raise StandardError.new("Range error (#{index < 1 ? '<' : '>'})") if index < 1 or index > length
+      old_ndx(index-1)
+    end
+  end
+  
+  describe "Base" do
+    before(:each) do
+      @base = UnityArray.new 20
+      @parser = Positional::MaskedParse.new @base.extend Positional::Decorator::Index
+    end
+    
+    it "should parse gene sequences" do
+      obj = @parser.parse 'GCTACTGCAAGTTCTAGACT'
+      obj.should_not be_nil
+      obj[1].should == 'G'
+      obj[2].should == 'C'
+      obj[20].should == 'T'
+    end
+  end
+  
+  describe "SequenceQuality" do
+    before(:each) do
+      @qs = UnityArray.new 20
+      @parser = Positional::Parse.new @qs.extend Positional::Decorator::Index
+    end
+    
+    it "should parse gene quality sequences" do
+      obj = @parser.parse '1 8 15 22 60 55 57 56 58 55 60 58 57 59 55 50 44 18 5 6'
+      obj[1].should == 1
+      obj[2].should == 8
+      obj[6].should == 55
+      obj[20].should == 6
+    end
   end
 end
