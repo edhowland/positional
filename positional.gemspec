@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{positional}
-  s.version = "0.2.1"
+  s.version = "0.2.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ed Howland"]
@@ -27,24 +27,11 @@ Gem::Specification.new do |s|
      ".yardoc/objects/Positional/Decorator/Message.dat",
      ".yardoc/objects/Positional/Decorator/Message/inject_i.dat",
      ".yardoc/objects/Positional/Format.dat",
-     ".yardoc/objects/Positional/Format/initialize_i.dat",
      ".yardoc/objects/Positional/Format/to_s_i.dat",
      ".yardoc/objects/Positional/MaskedParse.dat",
-     ".yardoc/objects/Positional/MaskedParse/format_i.dat",
-     ".yardoc/objects/Positional/MaskedParse/initialize_i.dat",
      ".yardoc/objects/Positional/MaskedParse/parse_i.dat",
-     ".yardoc/objects/Positional/Output.dat",
-     ".yardoc/objects/Positional/Output/dir_3D_i.dat",
-     ".yardoc/objects/Positional/Output/dir_i.dat",
-     ".yardoc/objects/Positional/Output/initialize_i.dat",
-     ".yardoc/objects/Positional/Output/path_i.dat",
-     ".yardoc/objects/Positional/Output/program_3D_i.dat",
-     ".yardoc/objects/Positional/Output/program_i.dat",
-     ".yardoc/objects/Positional/Output/puts_i.dat",
      ".yardoc/objects/Positional/Parse.dat",
      ".yardoc/objects/Positional/Parse/convert_i.dat",
-     ".yardoc/objects/Positional/Parse/format_i.dat",
-     ".yardoc/objects/Positional/Parse/initialize_i.dat",
      ".yardoc/objects/Positional/Parse/parse_i.dat",
      ".yardoc/objects/Positional/Parse/quote_3F_i.dat",
      ".yardoc/objects/Positional/Parse/significant_3F_i.dat",
@@ -100,7 +87,6 @@ Gem::Specification.new do |s|
      "lib/positional/format_base.rb",
      "lib/positional/masked_format.rb",
      "lib/positional/masked_parse.rb",
-     "lib/positional/output.rb",
      "lib/positional/parse.rb",
      "lib/positional/parser_base.rb",
      "lib/positional/pipe.rb",
@@ -112,7 +98,6 @@ Gem::Specification.new do |s|
      "spec/format_spec.rb",
      "spec/parse_spec.rb",
      "spec/pipe_spec.rb",
-     "spec/positional_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb",
      "spec/unity_array_spec.rb"
@@ -126,7 +111,6 @@ Gem::Specification.new do |s|
     "spec/format_spec.rb",
      "spec/parse_spec.rb",
      "spec/pipe_spec.rb",
-     "spec/positional_spec.rb",
      "spec/spec_helper.rb",
      "spec/unity_array_spec.rb"
   ]

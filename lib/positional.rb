@@ -1,4 +1,3 @@
-require "positional/output"
 require "positional/parser_base"
 require "positional/format_base"
 require "positional/format"

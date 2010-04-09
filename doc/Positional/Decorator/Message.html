@@ -89,6 +89,26 @@
 </li>
 
     
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#remove-instance_method" title="#remove (instance method)">- (Object) <strong>remove</strong>(fmt, &amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
   </ul>
 
 
@@ -130,12 +150,44 @@
 </table>
 </div>
     
+      <div class="method_details ">
+  <p class="signature " id="remove-instance_method">
+  
+    - (<tt>Object</tt>) <strong>remove</strong>(fmt, &amp;block) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+10
+11
+12
+13
+14</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/positional/decorator/message.rb', line 10</span>
+
+<span class='kw'>def</span> <span class='id remove'>remove</span><span class='lparen'>(</span><span class='id fmt'>fmt</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id block'>block</span><span class='rparen'>)</span>
+  <span class='id fmt'>fmt</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id message'>message</span><span class='op'>|</span>
+    <span class='kw'>yield</span> <span class='kw'>self</span><span class='period'>.</span><span class='id send'>send</span> <span class='id message'>message</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
 </div>
     
     <div id="footer">
-  Generated on Thu Apr  8 20:41:44 2010 by 
+  Generated on Fri Apr  9 15:17:37 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.3 (ruby-1.9.1).
 </div>

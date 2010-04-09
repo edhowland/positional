@@ -52,10 +52,12 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName">Object</span>
+      <span class="inheritName"><a href="ParserBase.html" title="Positional::ParserBase (class)">ParserBase</a></span>
       
         <ul class="fullTree">
           <li>Object</li>
+          
+            <li class="next"><a href="ParserBase.html" title="Positional::ParserBase (class)">ParserBase</a></li>
           
             <li class="next">Positional::Parse</li>
           
@@ -79,37 +81,10 @@
 
 
 
-  <h2>Instance Attribute Summary</h2>
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#format-instance_method" title="#format (instance method)">- (Object) <strong>format</strong> </a>
-    
-
-    
-  </span>
-  
-  
-    <span class="note title readonly">readonly</span>
-    
   
   
   
   
-
-  
-    <span class="summary_desc">
-Returns the value of attribute format.
-
-</span>
-  
-</li>
-
-    
-  </ul>
-
 
   <h2>Instance Method Summary</h2>
 
@@ -131,31 +106,6 @@ Returns the value of attribute format.
 
   
     <span class="summary_desc"></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Parse) <strong>initialize</strong>(object) </a>
-    
-
-    
-  </span>
-  
-    <span class="note title constructor">constructor</span>
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc">
-A new instance of Parse.
-
-</span>
   
 </li>
 
@@ -241,96 +191,20 @@ A new instance of Parse.
 
     
   </ul>
+
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <a href="ParserBase.html" title="Positional::ParserBase (class)">ParserBase</a></h3>
+  <p class="inherited"><a href="ParserBase.html#initialize-instance_method" title="Positional::ParserBase#initialize (method)">#initialize</a></p>
 <div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
-    <div class="method_details first">
-  <p class="signature first" id="initialize-instance_method">
-  
-    - (<tt><a href="" title="Positional::Parse (class)">Parse</a></tt>) <strong>initialize</strong>(object) 
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-A new instance of Parse
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-6
-7
-8</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/positional/parse.rb', line 6</span>
-
-<span class='kw'>def</span> <span class='id initialize'>initialize</span> <span class='id object'>object</span>
-  <span class='ivar'>@object</span> <span class='op'>=</span> <span class='id object'>object</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
+    <p class="notice">This class inherits a constructor from <a href="ParserBase.html#initialize-instance_method" title="Positional::ParserBase#initialize (method)">Positional::ParserBase</a></p>
   
 </div>
-
-  <div id="instance_attr_details" class="attr_details">
-    <h2>Instance Attribute Details</h2>
-    
-      
-      <span id=""></span>
-      <span id="format-instance_method"></span>
-      <div class="method_details first">
-  <p class="signature first" id="format-instance_method">
-  
-    - (<tt>Object</tt>) <strong>format</strong>  <span class="extras">(readonly)</span>
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-Returns the value of attribute format
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-5
-6
-7</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/positional/parse.rb', line 5</span>
-
-<span class='kw'>def</span> <span class='id format'>format</span>
-  <span class='ivar'>@format</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-  </div>
 
 
   <div id="instance_method_details" class="method_details_list">
@@ -350,6 +224,10 @@ Returns the value of attribute format
       <pre class="lines">
 
 
+5
+6
+7
+8
 9
 10
 11
@@ -357,14 +235,10 @@ Returns the value of attribute format
 13
 14
 15
-16
-17
-18
-19
-20</pre>
+16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/positional/parse.rb', line 9</span>
+      <pre class="code"><span class="info file"># File 'lib/positional/parse.rb', line 5</span>
 
 <span class='kw'>def</span> <span class='id convert'>convert</span> <span class='id string'>string</span>
   <span class='kw'>case</span> <span class='id string'>string</span>
@@ -396,20 +270,19 @@ Returns the value of attribute format
       <pre class="lines">
 
 
+30
+31
+32
+33
 34
 35
 36
 37
 38
-39
-40
-41
-42
-43
-44</pre>
+39</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/positional/parse.rb', line 34</span>
+      <pre class="code"><span class="info file"># File 'lib/positional/parse.rb', line 30</span>
 
 <span class='kw'>def</span> <span class='id parse'>parse</span> <span class='id input'>input</span><span class='comma'>,</span> <span class='id fmt'>fmt</span><span class='op'>=</span><span class='kw'>nil</span>
   <span class='id arry'>arry</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -417,10 +290,9 @@ Returns the value of attribute format
   <span class='id tokener'>tokener</span><span class='period'>.</span><span class='id tokenize'>tokenize</span><span class='lparen'>(</span><span class='id input'>input</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id token'>token</span><span class='op'>|</span>
     <span class='id arry'>arry</span> <span class='op'>&lt;&lt;</span> <span class='id convert'>convert</span><span class='lparen'>(</span><span class='id token'>token</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id significant?'>significant?</span><span class='lparen'>(</span><span class='id token'>token</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
-  <span class='id object'>object</span><span class='period'>.</span><span class='id inject'>inject</span> <span class='id fmt'>fmt</span> <span class='kw'>do</span>
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='id fmt'>fmt</span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='id arry'>arry</span><span class='period'>.</span><span class='id shift'>shift</span>
   <span class='kw'>end</span>
-  <span class='ivar'>@object</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -461,12 +333,12 @@ Returns the value of attribute format
       <pre class="lines">
 
 
-24
-25
-26</pre>
+20
+21
+22</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/positional/parse.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/positional/parse.rb', line 20</span>
 
 <span class='kw'>def</span> <span class='id quote?'>quote?</span> <span class='id string'>string</span>
   <span class='kw'>if</span> <span class='id string'>string</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&quot;|'</span><span class='regexp_end'>/</span></span><span class='semicolon'>;</span> <span class='kw'>true</span><span class='semicolon'>;</span> <span class='kw'>else</span><span class='semicolon'>;</span> <span class='kw'>false</span><span class='semicolon'>;</span> <span class='kw'>end</span>
@@ -510,16 +382,16 @@ Returns the value of attribute format
       <pre class="lines">
 
 
+23
+24
+25
+26
 27
 28
-29
-30
-31
-32
-33</pre>
+29</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/positional/parse.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'lib/positional/parse.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='id significant?'>significant?</span> <span class='id string'>string</span>
   <span class='kw'>unless</span> <span class='id quote?'>quote?</span><span class='lparen'>(</span><span class='id string'>string</span><span class='rparen'>)</span> <span class='kw'>or</span> <span class='id whitespace?'>whitespace?</span><span class='lparen'>(</span><span class='id string'>string</span><span class='rparen'>)</span>
@@ -567,12 +439,12 @@ Returns the value of attribute format
       <pre class="lines">
 
 
-21
-22
-23</pre>
+17
+18
+19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/positional/parse.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/positional/parse.rb', line 17</span>
 
 <span class='kw'>def</span> <span class='id whitespace?'>whitespace?</span> <span class='id string'>string</span>
   <span class='kw'>if</span> <span class='id string'>string</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s+$+</span><span class='regexp_end'>/</span></span> <span class='kw'>or</span> <span class='id string'>string</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^$</span><span class='regexp_end'>/</span></span><span class='semicolon'>;</span> <span class='kw'>true</span><span class='semicolon'>;</span> <span class='kw'>else</span><span class='semicolon'>;</span> <span class='kw'>false</span><span class='semicolon'>;</span> <span class='kw'>end</span>
@@ -587,7 +459,7 @@ Returns the value of attribute format
 </div>
     
     <div id="footer">
-  Generated on Thu Apr  8 20:41:44 2010 by 
+  Generated on Fri Apr  9 15:17:37 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.3 (ruby-1.9.1).
 </div>
