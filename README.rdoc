@@ -1,6 +1,62 @@
 = positional
 
-Description goes here.
+Formats and/or parses positional field lists like:
+'GCTACTGCAAGTTCTAGACT' or
+'1 8 15 22 60 55 57 56 58 55 60 58 57 59 55 50 44 18 5 6'
+
+The input to the formatter ond the output of the parser can be any Ruby obhect. A simple mapping to Array-like objects and a more general mapping to objects with attributes corresponding to the field list are provided. The more general mapping takes a format object which is an array of attribute names. 
+
+Eg. [:temp, :pressure, :flow_rate, :rpm, :message] might correspond to a field list of '32.0 189 10000 450 "Ok"'
+
+An class of :
+  class InOrOut
+    attr_accessor :temp, :pressure, :flow_rate, :rpm, :messag
+  end
+ 
+Could be used with the formatter or parser.
+
+ 
+== Installation
+
+sudo gem install positional
+
+== Usage
+  require 'pp'
+  require 'positional'
+  require 'in_or_out'
+
+  obj = InOrOut.new
+  obj.temp = 32.0
+  # ...  more attribute settings
+
+  # parsing
+  arry=Array.new 20
+  pb = Positional::MaskedParse.new arry.extend Positional::Decorator::Index
+  pq = Positional::Parse.new obj.extend Positional::Decorator::Message
+
+  arry = pb.parse 'GCTACTGCAAGTTCTAGACT'
+  obj = pq.parse '32.0 189 10000 450 "Ok"', [:temp, :pressure, :flow_rate, :rpm, :message]
+
+  p arry
+  pp obj
+
+  # formatting
+  pf = Positional::MaskedFormat.new arry
+  qf = Positional::Format.new obj
+
+  puts pf.to_s
+  puts qf.to_s [:temp, :pressure, :flow_rate, :rpm, :message]
+ 
+Produces:
+  ["G", "C", "T", "A", "C", "T", "G", "C", "A", "A", "G", "T", "T", "C", "T", "A", "G", "A", "C", "T"]
+  #<InOrOut:0x00000100ce0480
+    @flow_rate=10000,
+    @message="Ok",
+    @pressure=189,
+    @rpm=450,
+    @temp=32.0>
+  GCTACTGCAAGTTCTAGACT
+  32.0 189 10000 450 "Ok"
 
 == Note on Patches/Pull Requests
  

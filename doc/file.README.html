@@ -43,8 +43,78 @@
     
     <div id="content"><div id='filecontents'><h1>positional</h1>
 <p>
-Description goes here.
+Formats and/or parses positional field lists like:
+&#8216;GCTACTGCAAGTTCTAGACT&#8217; or &#8216;1 8 15 22 60 55 57 56 58 55 60
+58 57 59 55 50 44 18 5 6&#8217;
 </p>
+<p>
+The input to the formatter ond the output of the parser can be any Ruby
+obhect. A simple mapping to Array-like objects and a more general mapping
+to objects with attributes corresponding to the field list are provided.
+The more general mapping takes a format object which is an array of
+attribute names.
+</p>
+<p>
+Eg. [:temp, :pressure, :flow_rate, :rpm, :message] might correspond to a
+field list of &#8216;32.0 189 10000 450 &#8220;Ok&#8221;&#8217;
+</p>
+<p>
+An class of :
+</p>
+<pre class="code">
+  <span class='kw'>class</span> <span class='const'>InOrOut</span>
+    <span class='id attr_accessor'>attr_accessor</span> <span class='symbol'>:temp</span><span class='comma'>,</span> <span class='symbol'>:pressure</span><span class='comma'>,</span> <span class='symbol'>:flow_rate</span><span class='comma'>,</span> <span class='symbol'>:rpm</span><span class='comma'>,</span> <span class='symbol'>:messag</span>
+  <span class='kw'>end</span>
+</pre>
+<p>
+Could be used with the formatter or parser.
+</p>
+<h2>Installation</h2>
+<p>
+sudo gem install positional
+</p>
+<h2>Usage</h2>
+<pre class="code">
+  <span class='id require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>pp</span><span class='tstring_end'>'</span></span>
+  <span class='id require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>positional</span><span class='tstring_end'>'</span></span>
+  <span class='id require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>in_or_out</span><span class='tstring_end'>'</span></span>
+
+  <span class='id obj'>obj</span> <span class='op'>=</span> <span class='const'>InOrOut</span><span class='period'>.</span><span class='id new'>new</span>
+  <span class='id obj'>obj</span><span class='period'>.</span><span class='id temp'>temp</span> <span class='op'>=</span> <span class='float'>32.0</span>
+  <span class='comment'># ...  more attribute settings
+</span>
+  <span class='comment'># parsing
+</span>  <span class='id arry'>arry</span><span class='op'>=</span><span class='const'>Array</span><span class='period'>.</span><span class='id new'>new</span> <span class='int'>20</span>
+  <span class='id pb'>pb</span> <span class='op'>=</span> <span class='const'>Positional</span><span class='op'>::</span><span class='const'>MaskedParse</span><span class='period'>.</span><span class='id new'>new</span> <span class='id arry'>arry</span><span class='period'>.</span><span class='id extend'>extend</span> <span class='const'>Positional</span><span class='op'>::</span><span class='const'>Decorator</span><span class='op'>::</span><span class='const'>Index</span>
+  <span class='id pq'>pq</span> <span class='op'>=</span> <span class='const'>Positional</span><span class='op'>::</span><span class='const'>Parse</span><span class='period'>.</span><span class='id new'>new</span> <span class='id obj'>obj</span><span class='period'>.</span><span class='id extend'>extend</span> <span class='const'>Positional</span><span class='op'>::</span><span class='const'>Decorator</span><span class='op'>::</span><span class='const'>Message</span>
+
+  <span class='id arry'>arry</span> <span class='op'>=</span> <span class='id pb'>pb</span><span class='period'>.</span><span class='id parse'>parse</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>GCTACTGCAAGTTCTAGACT</span><span class='tstring_end'>'</span></span>
+  <span class='id obj'>obj</span> <span class='op'>=</span> <span class='id pq'>pq</span><span class='period'>.</span><span class='id parse'>parse</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>32.0 189 10000 450 &quot;Ok&quot;</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='symbol'>:temp</span><span class='comma'>,</span> <span class='symbol'>:pressure</span><span class='comma'>,</span> <span class='symbol'>:flow_rate</span><span class='comma'>,</span> <span class='symbol'>:rpm</span><span class='comma'>,</span> <span class='symbol'>:message</span><span class='rbracket'>]</span>
+
+  <span class='id p'>p</span> <span class='id arry'>arry</span>
+  <span class='id pp'>pp</span> <span class='id obj'>obj</span>
+
+  <span class='comment'># formatting
+</span>  <span class='id pf'>pf</span> <span class='op'>=</span> <span class='const'>Positional</span><span class='op'>::</span><span class='const'>MaskedFormat</span><span class='period'>.</span><span class='id new'>new</span> <span class='id arry'>arry</span>
+  <span class='id qf'>qf</span> <span class='op'>=</span> <span class='const'>Positional</span><span class='op'>::</span><span class='const'>Format</span><span class='period'>.</span><span class='id new'>new</span> <span class='id obj'>obj</span>
+
+  <span class='id puts'>puts</span> <span class='id pf'>pf</span><span class='period'>.</span><span class='id to_s'>to_s</span>
+  <span class='id puts'>puts</span> <span class='id qf'>qf</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='lbracket'>[</span><span class='symbol'>:temp</span><span class='comma'>,</span> <span class='symbol'>:pressure</span><span class='comma'>,</span> <span class='symbol'>:flow_rate</span><span class='comma'>,</span> <span class='symbol'>:rpm</span><span class='comma'>,</span> <span class='symbol'>:message</span><span class='rbracket'>]</span>
+</pre>
+<p>
+Produces:
+</p>
+<pre class="code">
+  [&quot;G&quot;, &quot;C&quot;, &quot;T&quot;, &quot;A&quot;, &quot;C&quot;, &quot;T&quot;, &quot;G&quot;, &quot;C&quot;, &quot;A&quot;, &quot;A&quot;, &quot;G&quot;, &quot;T&quot;, &quot;T&quot;, &quot;C&quot;, &quot;T&quot;, &quot;A&quot;, &quot;G&quot;, &quot;A&quot;, &quot;C&quot;, &quot;T&quot;]
+  #&lt;InOrOut:0x00000100ce0480
+    @flow_rate=10000,
+    @message=&quot;Ok&quot;,
+    @pressure=189,
+    @rpm=450,
+    @temp=32.0&gt;
+  GCTACTGCAAGTTCTAGACT
+  32.0 189 10000 450 &quot;Ok&quot;
+</pre>
 <h2>Note on Patches/Pull Requests</h2>
 <ul>
 <li>Fork the project.
@@ -73,7 +143,7 @@ Copyright &#169; 2010 Ed Howland. See LICENSE for details.
 </div></div>
     
     <div id="footer">
-  Generated on Fri Apr  9 15:17:37 2010 by 
+  Generated on Fri Apr  9 17:09:15 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.3 (ruby-1.9.1).
 </div>
