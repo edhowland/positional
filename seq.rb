@@ -79,5 +79,5 @@ puts "Recovery ---"
 bf = Positional::MaskedFormat.new foo.bases
 qf = Positional::Format.new foo.phreds
 
-puts bf.format
-puts qf.format
+puts bf.to_s
+puts qf.to_s

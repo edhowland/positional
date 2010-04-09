@@ -7,7 +7,7 @@ module Positional
         object
       end
     end
-    def to_s(fmt)
+    def to_s(fmt=nil)
       attrs = []
       super(fmt) do |value|
         attrs << convert(value)
